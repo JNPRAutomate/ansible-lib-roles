@@ -1,0 +1,5 @@
+---
+- name: Building RPM Probes configuration
+  template: >
+    src=main.conf.j2
+    dest={{ build_dir }}/junos-rpm.conf.part

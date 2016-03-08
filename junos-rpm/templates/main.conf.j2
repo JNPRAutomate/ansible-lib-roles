@@ -1,0 +1,18 @@
+services {
+  rpm {
+{% for probe in rpm_probes %}
+    probe {{ probe.owner }} {
+{% for test in probe.tests %}
+        test {{ test.name }} {
+            probe-type {{ test.type }};
+            probe-count {{ test.count }};
+            test-interval {{ test.interval }};
+{% if test.target_url is defined %}
+            target url {{ test.target_url }};
+{% endif %}
+        }
+{% endfor %}
+    }
+{% endfor %}
+  }
+}
