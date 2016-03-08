@@ -1,0 +1,80 @@
+services {
+    analytics {
+        export-profiles {
+{% for name, export_profile in analyticsd_export_profiles.iteritems() %}
+            {{ name }} {
+                stream-format {{ export_profile.stream_format }};
+                interface {
+{% for item in export_profile.interface %}
+{% if item is mapping %}
+{% for name, list in item.iteritems() %}
+                    {{ name }} {
+{% for entry in list %}
+                        {{ entry }};
+{% endfor %}
+                    }
+{% endfor %}
+{% else %}
+                    {{ item }};
+{% endif %}
+{% endfor %}
+                }
+                system {
+{% for item in export_profile.system %}
+{% if item is mapping %}
+{% for name, list in item.iteritems() %}
+                    {{ name }} {
+{% for entry in list %}
+                        {{ entry }};
+{% endfor %}
+                    }
+{% endfor %}
+{% else %}
+                    {{ item }};
+{% endif %}
+{% endfor %}
+                }
+            }
+{% endfor %}
+        }
+        resource-profiles {
+{% for name, resource_profile in analyticsd_resource_profiles.iteritems() %}
+            {{ name }} {
+{% for resource in resource_profile %}
+                {{ resource }};
+{% endfor %}
+            }
+{% endfor %}
+        }
+        collector {
+{% for name, collector in analyticsd_collectors.iteritems() %}
+            address {{ collector.ip }} {
+                port {{ collector.port }} {
+                    transport {{ collector.transport }} {
+                        export-profile {{ collector.export_profile }};
+                    }
+                }
+            }
+{% endfor %}
+        }
+
+{# Define resource to monitor #}
+        resource {
+            system {
+                polling-interval {
+                    traffic-monitoring 5;
+                    queue-monitoring 1000;
+                }
+            }
+{% if analyticsd_interfaces is defined %}
+            interfaces {
+{% for interface in analyticsd_interfaces %}
+                {{ interface.name }} {
+                    resource-profile {{ interface.resource_profile }};
+                }
+{% endfor %}
+            }
+{% endif %}
+        }
+    }
+}
