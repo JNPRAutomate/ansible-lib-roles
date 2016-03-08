@@ -1,0 +1,26 @@
+services {
+    analytics {
+{% for name, collector in jti_collectors.iteritems() %}
+        streaming-server {{ name }} {
+            remote-address {{ collector.ip }};
+            remote-port {{ collector.port }};
+        }
+{% endfor %}
+{% for name, export_profile in jti_export_profiles.iteritems() %}
+        export-profile {{ name }} {
+            local-address {{ export_profile.local_host }};
+            local-port {{ export_profile.local_port }};
+            reporting-rate {{ export_profile.reporting_rate }};
+            format {{ export_profile.format }};
+            transport {{ export_profile.transport }};
+        }
+{% endfor %}
+{% for name, sensor in jti_sensors.iteritems() %}
+        sensor {{ name }} {
+            server-name {{ sensor.server }};
+            export-name {{ sensor.export_profile }};
+            resource {{ sensor.resource }};
+        }
+{% endfor %}
+    }
+}

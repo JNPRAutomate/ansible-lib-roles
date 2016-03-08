@@ -1,0 +1,5 @@
+---
+- name: Building Telemetry configuration for Junos (JTI)
+  template: >
+    src=main.conf.j2
+    dest={{ build_dir }}/junos-jti.conf.part

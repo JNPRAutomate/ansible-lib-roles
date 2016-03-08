@@ -1,0 +1,21 @@
+
+
+
+jti_collectors:
+    default_collector:
+      ip: 192.168.1.1
+      port: 50000
+
+jti_export_profiles:
+    default_export_profile:
+      # local_host: <ip>
+      local_port: 1000
+      reporting_rate: 10
+      format: gpb
+      transport: udp
+
+jti_sensors:
+    phy-interface:
+        server: default_collector
+        export_profile: default_export_profile
+        resource: /junos/system/linecard/interface/
