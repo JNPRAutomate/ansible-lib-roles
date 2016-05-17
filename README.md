@@ -15,8 +15,8 @@ Library of generic / reusable roles for Ansible ..
 # How to use a role in another project
 
 There are 2 main options to use a role that is not located in your main project
-1. Add the path to your role library to your Ansible configuration
-2. Copy the role you are planning to use into your current project under the directory `roles`
+- 1/ Add the path to your role library to your Ansible configuration
+- 2/ Copy the role you are planning to use into your current project under the directory `roles`
 
 Both solutions have pros & cons; 1/ will avoid role duplication and will keep everything centralized but any change you are doing on the main role will affect all your projects.  
 The choice will also depend on how well the role is written
