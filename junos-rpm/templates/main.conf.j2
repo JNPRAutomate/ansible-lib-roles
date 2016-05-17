@@ -1,14 +1,17 @@
 services {
   rpm {
-{% for probe in rpm_probes %}
-    probe {{ probe.owner }} {
-{% for test in probe.tests %}
-        test {{ test.name }} {
+{% for owner, tests in rpm_probes.iteritems() %}
+    probe {{ owner }} {
+{% for test_name, test in tests.iteritems() %}
+        test {{ test_name }} {
             probe-type {{ test.type }};
-            probe-count {{ test.count }};
-            test-interval {{ test.interval }};
+            probe-count {{ test.count | default(rpm_probes_var.default.count) }};
+            test-interval {{ test.interval | default(rpm_probes_var.default.interval_time) }};
 {% if test.target_url is defined %}
             target url {{ test.target_url }};
+{% endif %}
+{% if test.target_address is defined %}
+            target address {{ test.target_address }};
 {% endif %}
         }
 {% endfor %}

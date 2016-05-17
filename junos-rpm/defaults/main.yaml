@@ -1,10 +1,9 @@
 
 
 rpm_probes:
-    - owner: device
-      tests:
-        - name: http-server
-          type: http-get
-          interval: 30
-          count: 5
-          target_url: http://192.168.1.1
+# No default probes defined
+
+rpm_probes_var:
+  default:
+    interval_time: 30
+    count: 3
