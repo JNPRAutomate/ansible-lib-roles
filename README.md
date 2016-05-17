@@ -6,6 +6,8 @@ Library of generic / reusable roles for Ansible ..
 - [junos-rpm](https://github.com/JNPRAutomate/ansible-lib-roles/tree/master/junos-rpm) - Configure RPM
 - [junos-jti](https://github.com/JNPRAutomate/ansible-lib-roles/tree/master/junos-jti) - Configure Junos Telemetry Interface
 - [junos-junos-analyticsd](https://github.com/JNPRAutomate/ansible-lib-roles/tree/master/junos-analyticsd) - Configure Analyticsd
+- [junos-syslog](https://github.com/JNPRAutomate/ansible-lib-roles/tree/master/junos-syslog) - Configure Remote Syslog  
+
 
 > More information on each role is available on the README.md file in each role directory
 
