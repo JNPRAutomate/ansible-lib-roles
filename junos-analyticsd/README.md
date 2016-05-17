@@ -15,4 +15,10 @@ ADD VARIABLES HERE
 ```yaml
 # host_vars/xxxx/ssdfdf
 
+analyticsd_interfaces:
+    -  name: xe-0/0/0
+       resource_profile: default_resource_profile
+    -  name: xe-0/0/1
+       resource_profile: default_resource_profile
+
 ```

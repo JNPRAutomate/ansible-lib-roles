@@ -1,0 +1,27 @@
+
+
+
+analyticsd_collectors:
+    default_collector:
+      ip: 192.168.1.1
+      port: 50020
+      transport: udp
+      export_profile: default_export_profile
+
+analyticsd_resource_profiles:
+    default_resource_profile:
+      - queue-monitoring
+      - traffic-monitoring
+      - latency-threshold high 2300 low 20
+
+
+analyticsd_export_profiles:
+    default_export_profile:
+        stream_format: json
+        interface:
+          - information
+          - statistics: [ traffic, queue ]
+          - status: [ link ]
+        system:
+          - information
+          - status:  [ traffic, queue ]
