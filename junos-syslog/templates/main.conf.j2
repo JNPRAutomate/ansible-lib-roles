@@ -1,0 +1,15 @@
+system {
+    syslog {
+{% for name, params in junos_syslog.iteritems() %}
+        {{ params.type }} {{ name }} {
+{% for key, value in params.iteritems() if not key == 'type' %}
+{% if value == 'True' %}
+            {{ key }};
+{% else %}
+            {{ key }} {{ value }};
+{% endif %}
+{% endfor%}
+        }
+{% endfor%}
+    }
+}

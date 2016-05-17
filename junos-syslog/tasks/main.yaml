@@ -1,0 +1,5 @@
+---
+- name: Building syslog configuration for Junos
+  template: >
+    src=main.conf.j2
+    dest={{ build_dir }}/junos-syslog.conf.part
